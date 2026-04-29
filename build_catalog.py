@@ -55,19 +55,21 @@ for i, book in enumerate(catalog):
         # Split Description_Bullets by ';' into array
         description_bullets = [bullet.strip() for bullet in book['Description_Bullets'].split(';')]
         
-        # Create TOML front-matter
+        # Create YAML front-matter
         frontmatter = f"""---
-title = "{book['Title']}"
-subtitle = "{book['Subtitle']}"
-category = "{book['Category']}"
-image_url = "{book['Image_URL']}"
-amazon_link = "{book['Amazon_Link']}"
-ku_eligible = "{book['KU_Eligible']}"
-review_count = {book['Review_Count']}
-description_bullets = {json.dumps(description_bullets)}
-related_books = {json.dumps(related_books)}
-date = 2024-01-01T00:00:00Z
-draft = false
+title: "{book['Title']}"
+subtitle: "{book['Subtitle']}"
+category: "{book['Category']}"
+image_url: "{book['Image_URL']}"
+amazon_link: "{book['Amazon_Link']}"
+ku_eligible: "{book['KU_Eligible']}"
+review_count: {book['Review_Count']}
+description_bullets:
+{chr(10).join(f'  - "{bullet}"' for bullet in description_bullets)}
+related_books:
+{chr(10).join(f'  - Book_ID: "{rb["Book_ID"]}"' + chr(10) + f'    Title: "{rb["Title"]}"' + chr(10) + f'    Image_URL: "{rb["Image_URL"]}"' + chr(10) + f'    Amazon_Link: "{rb["Amazon_Link"]}"' for rb in related_books)}
+date: 2024-01-01T00:00:00Z
+draft: false
 ---
 
 # {book['Title']}
