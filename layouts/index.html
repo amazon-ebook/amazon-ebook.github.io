@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>{{ .Site.Title }}</h1>
+            </div>
+            <ul class="nav-menu">
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Life, One Book at a Time</h1>
+                <p class="hero-subtitle">Discover our curated collection of best-selling books that will help you master new skills, achieve your goals, and unlock your full potential.</p>
+                <a href="#bestsellers" class="btn btn-primary">Explore Bestsellers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>Programming</h3>
+                    <p>Master coding languages and development</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <h3>Data Science</h3>
+                    <p>Learn data analysis and machine learning</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3>Design</h3>
+                    <p>Create beautiful user experiences</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📈</div>
+                    <h3>Marketing</h3>
+                    <p>Grow your business with smart strategies</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🚀</div>
+                    <h3>Self-Help</h3>
+                    <p>Boost productivity and achieve success</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3>Finance</h3>
+                    <p>Build wealth and financial freedom</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bestsellers Section -->
+    <section id="bestsellers" class="bestsellers">
+        <div class="container">
+            <h2 class="section-title">Our Top Bestsellers</h2>
+            <div class="books-grid" id="bestsellers-grid">
+                <!-- Books will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 {{ .Site.Title }}. All rights reserved.</p>
+            <p>As an Amazon Associate, I earn from qualifying purchases.</p>
+        </div>
+    </footer>
+
+    <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>

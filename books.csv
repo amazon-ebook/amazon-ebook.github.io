@@ -1,0 +1,11 @@
+Book_ID,Title,Subtitle,Category,Image_URL,Amazon_Link,KU_Eligible,Review_Count,Description_Bullets,Build_Status
+book001,Python Mastery,Become a Python Expert in 30 Days,Programming,https://picsum.photos/seed/python101/400/600.jpg,https://amazon.com/dp/B001,TRUE,245,"Learn Python from scratch;Build real projects;Master advanced concepts",on
+book002,JavaScript Complete,The Ultimate JavaScript Guide,Programming,https://picsum.photos/seed/js202/400/600.jpg,https://amazon.com/dp/B002,FALSE,189,"Master modern JavaScript;Build web applications;Understand frameworks",on
+book003,Data Science Fundamentals,Your Path to Data Science,Data Science,https://picsum.photos/seed/ds303/400/600.jpg,https://amazon.com/dp/B003,TRUE,312,"Learn data analysis;Master statistics;Build ML models",on
+book004,Web Design Mastery,Create Beautiful Websites,Design,https://picsum.photos/seed/web404/400/600.jpg,https://amazon.com/dp/B004,FALSE,156,"Learn UI/UX principles;Master responsive design;Build portfolios",on
+book005,Marketing Strategies,Grow Your Business Online,Marketing,https://picsum.photos/seed/mkt505/400/600.jpg,https://amazon.com/dp/B005,TRUE,278,"Digital marketing mastery;Social media strategies;Content marketing",on
+book006,Productivity Hacks,10x Your Productivity,Self-Help,https://picsum.photos/seed/prod606/400/600.jpg,https://amazon.com/dp/B006,FALSE,134,"Time management techniques;Focus strategies;Habit formation",on
+book007,Financial Freedom,Build Wealth Smartly,Finance,https://picsum.photos/seed/fin707/400/600.jpg,https://amazon.com/dp/B007,TRUE,423,"Investment basics;Passive income;Financial planning",on
+book008,Leadership Excellence,Lead with Confidence,Business,https://picsum.photos/seed/lead808/400/600.jpg,https://amazon.com/dp/B008,FALSE,198,"Team management;Communication skills;Strategic thinking",on
+book009,Photography Masterclass,Capture Stunning Moments,Photography,https://picsum.photos/seed/photo909/400/600.jpg,https://amazon.com/dp/B009,TRUE,267,"Camera techniques;Composition rules;Post-processing",on
+book010,Fitness Revolution,Transform Your Body,Health,https://picsum.photos/seed/fit1010/400/600.jpg,https://amazon.com/dp/B010,FALSE,145,"Workout plans;Nutrition guide;Lifestyle changes",on

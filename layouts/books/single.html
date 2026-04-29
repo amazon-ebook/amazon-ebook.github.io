@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></h1>
+            </div>
+            <ul class="nav-menu">
+                {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Book Hero Section -->
+    <section class="book-hero">
+        <div class="container">
+            <div class="book-hero-content">
+                <div class="book-cover">
+                    <img src="{{ .Params.image_url }}" alt="{{ .Title }}" class="book-image">
+                </div>
+                <div class="book-info">
+                    <h1 class="book-title">{{ .Title }}</h1>
+                    {{ if .Params.subtitle }}
+                    <h2 class="book-subtitle">{{ .Params.subtitle }}</h2>
+                    {{ end }}
+                    
+                    <div class="book-rating">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span class="review-count">({{ .Params.review_count }} Reviews)</span>
+                    </div>
+
+                    <div class="book-actions">
+                        <a href="{{ .Params.amazon_link }}" class="btn btn-amazon btn-large" target="_blank" rel="noopener">
+                            Buy on Amazon - $0.99
+                        </a>
+                        {{ if eq .Params.ku_eligible "TRUE" }}
+                        <a href="{{ .Params.amazon_link }}" class="btn btn-ku btn-large" target="_blank" rel="noopener">
+                            Read for FREE with Kindle Unlimited
+                        </a>
+                        {{ end }}
+                    </div>
+
+                    <div class="book-meta">
+                        <span class="category">{{ .Params.category }}</span>
+                        {{ if eq .Params.ku_eligible "TRUE" }}
+                        <span class="ku-badge">Kindle Unlimited</span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Description -->
+    <section class="book-description">
+        <div class="container">
+            <h2>What You'll Learn</h2>
+            {{ if .Params.description_bullets }}
+            <ul class="description-list">
+                {{ range .Params.description_bullets }}
+                <li>{{ . }}</li>
+                {{ end }}
+            </ul>
+            {{ end }}
+        </div>
+    </section>
+
+    <!-- Related Books Section -->
+    <section class="related-books">
+        <div class="container">
+            <h2>Readers also bought</h2>
+            <div class="books-grid">
+                {{ range .Params.related_books }}
+                <div class="book-card">
+                    <img src="{{ .image_url }}" alt="{{ .title }}" class="book-card-image">
+                    <h3>{{ .title }}</h3>
+                    <a href="{{ .amazon_link }}" class="btn btn-amazon" target="_blank" rel="noopener">Buy on Amazon</a>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Bestsellers Section -->
+    <section class="bestsellers">
+        <div class="container">
+            <h2>Our Top Bestsellers</h2>
+            <div class="books-grid" id="bestsellers-grid">
+                <!-- Books will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 {{ .Site.Title }}. All rights reserved.</p>
+            <p>As an Amazon Associate, I earn from qualifying purchases.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Buy Button -->
+    <div class="sticky-buy" id="stickyBuy">
+        <div class="container">
+            <a href="{{ .Params.amazon_link }}" class="btn btn-amazon btn-large" target="_blank" rel="noopener">
+                Buy on Amazon - $0.99
+            </a>
+        </div>
+    </div>
+
+    <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>

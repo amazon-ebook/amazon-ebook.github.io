@@ -1,0 +1,23 @@
+baseURL = "amazon-ebook.github.io"
+languageCode = "en-us"
+title = "Amazon KDP Book Catalog"
+theme = "custom"
+
+[params]
+  description = "Transform Your Life, One Book at a Time"
+  author = "Amazon KDP Publisher"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "All Books"
+    url = "/books/"
+    weight = 20
