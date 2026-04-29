@@ -24,6 +24,45 @@
         </div>
     </section>
 
+    <!-- Categories Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Browse by Category</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg text-center hover:bg-blue-100 transition-colors">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-semibold mb-2">Programming</h3>
+                    <p class="text-gray-600">Master coding languages</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg text-center hover:bg-green-100 transition-colors">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-2">Wealth</h3>
+                    <p class="text-gray-600">Build financial freedom</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg text-center hover:bg-purple-100 transition-colors">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-semibold mb-2">Mindset</h3>
+                    <p class="text-gray-600">Transform your thinking</p>
+                </div>
+                <div class="bg-red-50 p-6 rounded-lg text-center hover:bg-red-100 transition-colors">
+                    <div class="text-4xl mb-4">❤️</div>
+                    <h3 class="text-xl font-semibold mb-2">Health</h3>
+                    <p class="text-gray-600">Live your best life</p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg text-center hover:bg-yellow-100 transition-colors">
+                    <div class="text-4xl mb-4">📈</div>
+                    <h3 class="text-xl font-semibold mb-2">Business</h3>
+                    <p class="text-gray-600">Grow your enterprise</p>
+                </div>
+                <div class="bg-indigo-50 p-6 rounded-lg text-center hover:bg-indigo-100 transition-colors">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold mb-2">Design</h3>
+                    <p class="text-gray-600">Create beautiful experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Bestsellers Grid -->
     <section id="bestsellers" class="py-16">
         <div class="container mx-auto px-4">
@@ -36,7 +75,7 @@
 
     <script>
         // Load bestsellers data
-        fetch('/data/bestsellers.json')
+        fetch('./data/bestsellers.json')
             .then(response => response.json())
             .then(bestsellers => {
                 const grid = document.getElementById('bestsellers-grid');
@@ -49,6 +88,9 @@
                         <img src="${book.Image_URL}" alt="${book.Title}" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg mb-2">${book.Title}</h3>
+                            <a href="/books/${book.Book_ID}/" class="bg-blue-500 text-white px-4 py-2 rounded font-medium text-sm inline-block hover:shadow transition-all mb-2 block">
+                                View Details
+                            </a>
                             <a href="${book.Amazon_Link}" class="amazon-orange text-white px-4 py-2 rounded font-medium text-sm inline-block hover:shadow transition-all" target="_blank">
                                 Buy on Amazon
                             </a>

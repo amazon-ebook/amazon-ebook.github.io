@@ -128,7 +128,7 @@
 
     <script>
         // Load bestsellers data
-        fetch('/data/bestsellers.json')
+        fetch('../data/bestsellers.json')
             .then(response => response.json())
             .then(bestsellers => {
                 const grid = document.getElementById('bestsellers-grid');
