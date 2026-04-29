@@ -3,95 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Site.Title }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <title>Amazon Book Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .amazon-orange { background-color: #FF9900; }
+        .amazon-orange:hover { background-color: #FF7700; }
+        .ku-blue { background-color: #232F3E; }
+        .ku-blue:hover { background-color: #1a1f2a; }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <h1>{{ .Site.Title }}</h1>
-            </div>
-            <ul class="nav-menu">
-                {{ range .Site.Menus.main }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                {{ end }}
-            </ul>
-        </div>
-    </nav>
-
+<body class="bg-gray-50">
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Transform Your Life, One Book at a Time</h1>
-                <p class="hero-subtitle">Discover our curated collection of best-selling books that will help you master new skills, achieve your goals, and unlock your full potential.</p>
-                <a href="#bestsellers" class="btn btn-primary">Explore Bestsellers</a>
-            </div>
+    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4">Transform Your Life</h1>
+            <p class="text-xl mb-8">Discover our curated collection of life-changing books</p>
+            <a href="#bestsellers" class="amazon-orange text-white px-8 py-3 rounded-lg font-semibold text-lg inline-block hover:shadow-lg transition-all">
+                Explore Bestsellers
+            </a>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">Browse by Category</h2>
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon">💻</div>
-                    <h3>Programming</h3>
-                    <p>Master coding languages and development</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">📊</div>
-                    <h3>Data Science</h3>
-                    <p>Learn data analysis and machine learning</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🎨</div>
-                    <h3>Design</h3>
-                    <p>Create beautiful user experiences</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">📈</div>
-                    <h3>Marketing</h3>
-                    <p>Grow your business with smart strategies</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🚀</div>
-                    <h3>Self-Help</h3>
-                    <p>Boost productivity and achieve success</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">💰</div>
-                    <h3>Finance</h3>
-                    <p>Build wealth and financial freedom</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bestsellers Section -->
-    <section id="bestsellers" class="bestsellers">
-        <div class="container">
-            <h2 class="section-title">Our Top Bestsellers</h2>
-            <div class="books-grid" id="bestsellers-grid">
+    <!-- Bestsellers Grid -->
+    <section id="bestsellers" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Top Bestsellers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" id="bestsellers-grid">
                 <!-- Books will be loaded here via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 {{ .Site.Title }}. All rights reserved.</p>
-            <p>As an Amazon Associate, I earn from qualifying purchases.</p>
-        </div>
-    </footer>
-
-    <script src="{{ "js/main.js" | relURL }}"></script>
+    <script>
+        // Load bestsellers data
+        fetch('/data/bestsellers.json')
+            .then(response => response.json())
+            .then(bestsellers => {
+                const grid = document.getElementById('bestsellers-grid');
+                grid.innerHTML = '';
+                
+                bestsellers.forEach(book => {
+                    const bookCard = document.createElement('div');
+                    bookCard.className = 'bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow';
+                    bookCard.innerHTML = `
+                        <img src="${book.Image_URL}" alt="${book.Title}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">${book.Title}</h3>
+                            <a href="${book.Amazon_Link}" class="amazon-orange text-white px-4 py-2 rounded font-medium text-sm inline-block hover:shadow transition-all" target="_blank">
+                                Buy on Amazon
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(bookCard);
+                });
+            })
+            .catch(error => console.error('Error loading bestsellers:', error));
+    </script>
 </body>
 </html>
