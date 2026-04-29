@@ -56,6 +56,15 @@ for i, book in enumerate(catalog):
         description_bullets = [bullet.strip() for bullet in book['Description_Bullets'].split(';')]
         
         # Create YAML front-matter
+        desc_bullets_yaml = '\n'.join(f'  - "{bullet}"' for bullet in description_bullets)
+        related_books_yaml = ''
+        for rb in related_books:
+            related_books_yaml += f'''  - Book_ID: "{rb['Book_ID']}"
+    Title: "{rb['Title']}"
+    Image_URL: "{rb['Image_URL']}"
+    Amazon_Link: "{rb['Amazon_Link']}"
+'''
+        
         frontmatter = f"""---
 title: "{book['Title']}"
 subtitle: "{book['Subtitle']}"
@@ -65,10 +74,9 @@ amazon_link: "{book['Amazon_Link']}"
 ku_eligible: "{book['KU_Eligible']}"
 review_count: {book['Review_Count']}
 description_bullets:
-{chr(10).join(f'  - "{bullet}"' for bullet in description_bullets)}
+{desc_bullets_yaml}
 related_books:
-{chr(10).join(f'  - Book_ID: "{rb["Book_ID"]}"' + chr(10) + f'    Title: "{rb["Title"]}"' + chr(10) + f'    Image_URL: "{rb["Image_URL"]}"' + chr(10) + f'    Amazon_Link: "{rb["Amazon_Link"]}"' for rb in related_books)}
-date: 2024-01-01T00:00:00Z
+{related_books_yaml}date: 2024-01-01T00:00:00Z
 draft: false
 ---
 
