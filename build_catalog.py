@@ -76,7 +76,8 @@ review_count: {book['Review_Count']}
 description_bullets:
 {desc_bullets_yaml}
 related_books:
-{related_books_yaml}date: 2024-01-01T00:00:00Z
+{related_books_yaml}
+date: 2024-01-01T00:00:00Z
 draft: false
 ---
 
