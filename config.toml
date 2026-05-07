@@ -1,22 +1,4 @@
-baseURL = "https://amazon-ebook.github.io"
+baseURL = "https://amazon-ebook.github.io/1"
 languageCode = "en-us"
-title = "Amazon KDP Book Catalog"
-
-[params]
-  description = "Transform Your Life, One Book at a Time"
-  author = "Amazon KDP Publisher"
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-[menu]
-  [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 10
-  [[menu.main]]
-    name = "All Books"
-    url = "/books/"
-    weight = 20
+title = "Hugo Amazon Affiliate Site"
+publishDir = "docs"

@@ -4,103 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="6kDHJjYqrD2b3iTNv1S265vGS-TXNFetJfSg55x8qe8" />
-    <title>Amazon Book Catalog</title>
+    <title>{{ .Site.Title }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .amazon-orange { background-color: #FF9900; }
-        .amazon-orange:hover { background-color: #FF7700; }
-        .ku-blue { background-color: #232F3E; }
-        .ku-blue:hover { background-color: #1a1f2a; }
-    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-100">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl font-bold mb-4">Transform Your Life</h1>
-            <p class="text-xl mb-8">Discover our curated collection of life-changing books</p>
-            <a href="#bestsellers" class="amazon-orange text-white px-8 py-3 rounded-lg font-semibold text-lg inline-block hover:shadow-lg transition-all">
-                Explore Bestsellers
-            </a>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Browse by Category</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-blue-50 p-6 rounded-lg text-center hover:bg-blue-100 transition-colors">
-                    <div class="text-4xl mb-4">💻</div>
-                    <h3 class="text-xl font-semibold mb-2">Programming</h3>
-                    <p class="text-gray-600">Master coding languages</p>
-                </div>
-                <div class="bg-green-50 p-6 rounded-lg text-center hover:bg-green-100 transition-colors">
-                    <div class="text-4xl mb-4">💰</div>
-                    <h3 class="text-xl font-semibold mb-2">Wealth</h3>
-                    <p class="text-gray-600">Build financial freedom</p>
-                </div>
-                <div class="bg-purple-50 p-6 rounded-lg text-center hover:bg-purple-100 transition-colors">
-                    <div class="text-4xl mb-4">🧠</div>
-                    <h3 class="text-xl font-semibold mb-2">Mindset</h3>
-                    <p class="text-gray-600">Transform your thinking</p>
-                </div>
-                <div class="bg-red-50 p-6 rounded-lg text-center hover:bg-red-100 transition-colors">
-                    <div class="text-4xl mb-4">❤️</div>
-                    <h3 class="text-xl font-semibold mb-2">Health</h3>
-                    <p class="text-gray-600">Live your best life</p>
-                </div>
-                <div class="bg-yellow-50 p-6 rounded-lg text-center hover:bg-yellow-100 transition-colors">
-                    <div class="text-4xl mb-4">📈</div>
-                    <h3 class="text-xl font-semibold mb-2">Business</h3>
-                    <p class="text-gray-600">Grow your enterprise</p>
-                </div>
-                <div class="bg-indigo-50 p-6 rounded-lg text-center hover:bg-indigo-100 transition-colors">
-                    <div class="text-4xl mb-4">🎨</div>
-                    <h3 class="text-xl font-semibold mb-2">Design</h3>
-                    <p class="text-gray-600">Create beautiful experiences</p>
-                </div>
-            </div>
+    <section class="bg-blue-600 text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4">Transform Your Life Today</h1>
+            <p class="text-xl">Unlock the secrets of health, wealth, and mindset with our hand-picked Amazon bestsellers.</p>
         </div>
     </section>
 
     <!-- Bestsellers Grid -->
-    <section id="bestsellers" class="py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Our Top Bestsellers</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" id="bestsellers-grid">
-                <!-- Books will be loaded here via JavaScript -->
+    <section class="container mx-auto py-10 px-4">
+        <h2 class="text-3xl font-bold mb-8 text-center">Top Bestsellers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {{ range .Site.Data.bestsellers }}
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{{ .Image_URL }}" alt="{{ .Title }}" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-lg font-semibold mb-2">{{ .Title }}</h3>
+                <a href="/books/{{ .Book_ID }}/" class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded block text-center">View Book</a>
             </div>
+            {{ end }}
         </div>
     </section>
-
-    <script>
-        // Load bestsellers data
-        fetch('./data/bestsellers.json')
-            .then(response => response.json())
-            .then(bestsellers => {
-                const grid = document.getElementById('bestsellers-grid');
-                grid.innerHTML = '';
-                
-                bestsellers.forEach(book => {
-                    const bookCard = document.createElement('div');
-                    bookCard.className = 'bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow';
-                    bookCard.innerHTML = `
-                        <img src="${book.Image_URL}" alt="${book.Title}" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold text-lg mb-2">${book.Title}</h3>
-                            <a href="/books/${book.Book_ID}/" class="bg-blue-500 text-white px-4 py-2 rounded font-medium text-sm inline-block hover:shadow transition-all mb-2 block">
-                                View Details
-                            </a>
-                            <a href="${book.Amazon_Link}" class="amazon-orange text-white px-4 py-2 rounded font-medium text-sm inline-block hover:shadow transition-all" target="_blank">
-                                Buy on Amazon
-                            </a>
-                        </div>
-                    `;
-                    grid.appendChild(bookCard);
-                });
-            })
-            .catch(error => console.error('Error loading bestsellers:', error));
-    </script>
 </body>
 </html>
