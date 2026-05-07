@@ -1,4 +1,4 @@
 baseURL = "https://amazon-ebook.github.io/1"
 languageCode = "en-us"
 title = "Hugo Amazon Affiliate Site"
-publishDir = "docs"
+publishDir = "public"
